@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+: Quotes
+{% endblock %}
+{% block main %}
+<section class="section-d">
+    <div class="quote-box">
+        <div class="quote">
+            <p>"Once you learn to read, you will be forever free."</p>
+            <p>By Frederick Douglas from </p>
+        </div>
+        <button class="quote-changer">New Quote</button>
+    </div>
+</section>
+{% endblock %}
+{% block script %}
+<script>
+    const quoteDisplay = document.querySelector('.quote');
+    const quoteBox = document.querySelector('.quote-box');
+    const quoteChanger = document.querySelector('.quote-changer');
+
+    quoteChanger.addEventListener('click', getQuote);
+</script>
+{% endblock %}

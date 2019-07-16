@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Let's Read {% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" type="image/png" href="/static/favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=Karla&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Proza+Libre&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/c-d.css">
+    <link rel="stylesheet" href="/static/sign-up.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                Let's &nbspRead
+            </div>
+            <div class="user">
+                <a href="/signup">Sign Up</a>
+                <a href="/login">Login</a>
+                <a href="#"><i class="fas fa-user"></i></a>
+            </div>
+        </header>
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+        <footer>
+            <div class="home active-button">
+                <a href="/"><i class="fas fa-home"></i></a>
+                <p>Home</p>
+            </div>
+            <div class="explore">
+                <a href="/explore"><i class="fas fa-search"></i></a>
+                <p>Search</p>
+            </div>
+            <div class="best-seller">
+                <a href="/bestseller"><i class="fas fa-poll"></i></a>
+                <p>Bestseller</p>
+            </div>
+            <div class="quotes">
+                <a href="/quote"><i class="fas fa-quote-left"></i></a>
+                <p>Quotes</p>
+            </div>
+        </footer>
+    </div>
+    <script src="/static/main.js"></script>
+    {% block script %}
+    {% endblock %}
+</body>
+
+</html>

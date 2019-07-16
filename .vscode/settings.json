@@ -1,3 +1,10 @@
 {
-    "python.pythonPath": "abc\\Scripts\\python.exe"
+    "python.pythonPath": "abc\\Scripts\\python.exe",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.formatting.provider": "black",
+    "python.linting.flake8Enabled": false,
+    "python.linting.mypyEnabled": false,
+    "python.linting.pep8Enabled": false,
+    "python.linting.pylamaEnabled": false
 }

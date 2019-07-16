@@ -13,9 +13,9 @@ function getBestFictionSeller() {
                 listF.innerHTML +=
                     `
             <div class="b-book">
-                
+
                 <img src="${book.book_image}" alt="BestSeller" width="100" height="150">
-                
+
             </div>
             `
             }
