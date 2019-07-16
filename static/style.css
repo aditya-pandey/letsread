@@ -6,7 +6,13 @@
 }
 @font-face {
     font-family: againts;
-    src: url('/static/AGAINTS.OTF'); 
+    src: url('/static/AGAINTS.OTF');
+}
+.flexy{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .container{
     width: 100%;
@@ -41,7 +47,7 @@ footer{
     bottom: 0;
     z-index: 9;
     border-top: 0.5px groove;
-} 
+}
 footer div{
     cursor: pointer;
 }
@@ -66,10 +72,9 @@ main{
     top: 56px;
     display: flex;
     flex-direction: column;
-    text-align: center;  
+    text-align: center;
 }
 main section{
-    position: absolute;
     width: 100%;
     padding: 0 2em;
     background: rgb(233, 217, 217);
@@ -104,7 +109,7 @@ main section{
 .section-a p{
     font-size: 1rem;
     padding: 0.5em 1em;
-    color: antiquewhite;
+    color: white;
     font-family: 'Proza Libre',sans-serif;
 }
 .explore-button{
@@ -113,26 +118,20 @@ main section{
     width: 190px;
     border-radius: 5px;
     box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2),
-                0px 2px 2px 0px rgba(0,0,0,0.14), 
+                0px 2px 2px 0px rgba(0,0,0,0.14),
                 0px 3px 1px -2px rgba(0,0,0,0.12);
-    font-size: 1.7em; 
+    font-size: 1.7em;
     cursor: pointer;
     height: 50px;
     /* text-shadow: 0px 5px 6px black,
                  0px 5px 6px black; */
-    transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-                box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-                border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;             
 }
 .explore-button:hover{
     background:rgb(73, 68, 73);
 }
 .section-a,.section-b, .section-c, .section-d{
-    display: none;
-}
-.active{
     display: flex;
-} 
+}
 .active-button a{
     color: white;
 }
@@ -154,13 +153,20 @@ main section{
     height: 45px;
     border-radius: 25px;
 }
-.search a{
+.search button{
+    background: white;
     position: absolute;
     color: #000;
     font-size: 1.7em;
     text-align: center;
     padding: 5px 10px;
     right: 10px;
+    border: none;
+    top: 2px;
+    border-radius: 25px;
+}
+.search a{
+    color: black;
 }
 .search input{
     border-radius: 25px;
@@ -172,24 +178,30 @@ main section{
 .search input:focus{
     outline: none;
 }
-.section-b .books{
+.section-b .books,.section-b .books-home{
     width: fit-content;
     display: grid;
     grid-template-columns: 100%;
     padding: 2em 0;
 }
-.section-b .books .book{
+.section-b .book{
     width: 350px;
     display: flex;
     justify-content: space-around;
     background: rgb(22, 22, 22);
     text-align: justify;
     padding: 1em;
+    flex-direction: column;
+    cursor: pointer;
     font-size: 14px;
     border-radius: 5px;
     box-shadow: 0px 0px 7px black,0px 0px 6px black,0px 0px 5px black;
     line-height: 1.5;
     margin-top: 1.5em;
+}
+.details-cover{
+    display: flex;
+    justify-content: space-around;
 }
 .book .details{
     width: 60%;
@@ -201,10 +213,45 @@ main section{
 .book p{
     font-size: 12px;
 }
+.desci{
+    display: none;
+}
+.description{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    letter-spacing: 0.1px;
+    padding: 0 1em;
+}
+.attribution{
+    font-size: 14px;
+}
+/* .bookdetail{
+    background: rgba(0,0,0,0.4);
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    z-index: 29;
+    top: -56px;
+    left: 0;
+}
+.bookdetail div{
+    background: #000;
+    width: 80%;
+    border-radius: 10px;
+    height: 80%;
+    margin: 65px auto;
+    color: white;
+    padding: 1em;
+    display: flex;
+} */
+
+/* floating menu*/
 
 @media screen and (min-width:800px){
     main section{
         font-size: 1.4em;
+    }
+    .section-b button{
+        font-size: 1.2em;
     }
     .section-a p{
         padding: 0.5em 5em;
@@ -216,7 +263,7 @@ main section{
         height: 60px;
         margin-bottom: 2em;
     }
-    .section-b .books{
+    .section-b .books, .section-b .books-home{
         grid-template-columns: 50% 50%;
         grid-gap: 50px;
     }
@@ -226,13 +273,12 @@ main section{
         font-size: 0.9em;
     }
     .search a{
-        font-size: 1.5em;
         width: 15%;
     }
     .section-b .search{
         width: 60%;
     }
-    .books .book{
+    .books .book, .books-home .book{
         width: 450px;
     }
     footer{
@@ -240,7 +286,7 @@ main section{
     }
 }
 @media screen and (max-width:400px){
-    .section-b .books .book{
+    .section-b .books .book,.section-b .books-home .book{
         width: 250px;
     }
     main{
