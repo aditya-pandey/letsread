@@ -1,5 +1,16 @@
 
 // declaring variables
+const footerIcons = document.querySelectorAll("footer a");
+for (let i = 0; i < footerIcons.length; i++) {
+    footerIcons[i].addEventListener("click", () => {
+        console.log(i)
+        for (let j = 0; j < footerIcons.length; j++) {
+            if (j != i) {
+                console.log(" ")
+            }
+        }
+    })
+}
 
 var input = document.querySelector('.search input');
 var books = document.querySelector('.books');
@@ -15,17 +26,10 @@ function getQuote() {
         "Travel far enough, you meet yourself.", "None of us really changes over time. We only become more fully what we are.", "Most people are nice when you finally see them.",
         "Don't Panic"];
 
-    const authors = ["J.R.R. Tolkien", "H.Jackson Brown", " Laurel Thatcher Ulrich", "André Gide", "Oscar Wilde", "J.K. Rowling", "Stephen King", "Chuck Palahniuk", "David Mitchell", "Anne Rice", "Harper Lee", "Douglas Adams"];
-    const books = ["The Two Towers", "P.S. I Love You", "Well-Behaved Women Seldom Make History", "Autumn Leaves", "A Woman of No Importance", "Harry Potter and Deathly Hallows",
-        "Different Seasons", "Diary", "Cloud Atlas", "The Vampire Lestat", "To Kill a Mockingbird", "The Hitchhiker’s Guide to the Galaxy"];
-
-    console.log(quotes.length, authors.length, books.length)
-
     quoteBox.style.background = `rgb(${Math.floor(Math.random() * (255 - 120) + 120)},${Math.floor(Math.random() * (255 - 120) + 120)},${Math.floor(Math.random() * (255 - 120) + 120)})`;
     let quoteNumber = Math.floor(Math.random() * 12);
     quoteDisplay.innerHTML = `
             <p>"${quotes[quoteNumber]}"</p>
-            <p class="a-b"> By ${authors[quoteNumber]} from ${books[quoteNumber]}</p>
             `;
 }
 

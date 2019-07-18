@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/png" href="/static/favicon.png">
+    <title>Let's Read : Error</title>
+</head>
+<style>
+    body {
+        margin:0;
+        padding: 0;
+    }
+    .error{
+        width: 100vw;
+        height: 100vh;
+        background: rgb(233, 217, 217);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .sorry{
+        margin: 0 auto;
+        width: 400px;
+        height: 80vh;
+    }
+</style>
+
+<body>
+    <div class="error">
+        <img alt="{{ top }}" class="sorry"
+            src="http://memegen.link/custom/{{ top | urlencode }}/{{ bottom | urlencode }}.jpg?alt=https://cdn0.iconfinder.com/data/icons/ice-cream-cone-emojis/522/ice-cream-cone-emoji-cartoon-042-512.png"
+            title="{{ top }}">
+    </div>
+</body>
+
+</html>

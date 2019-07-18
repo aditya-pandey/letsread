@@ -26,7 +26,7 @@ header,footer{
     width: 100%;
     display: flex;
     justify-content: space-between;
-    height:56px;
+    height:50px;
     align-items: center;
     position: fixed;
     background: rgb(0, 0, 0);
@@ -37,6 +37,7 @@ header,footer{
 header a:hover,footer a:hover{
     color: white;
 }
+
 header{
     top: 0;
     z-index: 10;
@@ -55,13 +56,9 @@ header .logo{
     font-family: againts;
     font-size: 1.8em;
     cursor: pointer;
-    /* text-shadow: 0px 6px 6px black,
-                0px 5px 5px black,
-                0px 5px 5px black,
-                0px 5px 5px black; */
 }
 footer a{
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: rgb(156, 145, 145);
 }
 footer p{
@@ -69,7 +66,7 @@ footer p{
 }
 main{
     position: relative;
-    top: 56px;
+    top: 50px;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -78,7 +75,7 @@ main section{
     width: 100%;
     padding: 0 2em;
     background: rgb(233, 217, 217);
-    min-height: calc(100vh - 112px);
+    min-height: calc(100vh - 100px);
 }
 .user a{
     margin: 0 0.5em;
@@ -129,11 +126,100 @@ main section{
 .explore-button:hover{
     background:rgb(73, 68, 73);
 }
-.section-a,.section-b, .section-c, .section-d{
+.section-a,.section-b, .section-c, .section-d, .section-e{
     display: flex;
 }
 .active-button a{
     color: white;
+}
+.section-e{
+    background: #1c1f24;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    padding: 2em;
+}
+.new{
+    width: 400px;
+    min-height: 40vh;
+    background: rgba(255, 255, 255, 0.904);
+    border-radius: 15px;
+    color: black;
+    margin-bottom: 1em;
+    padding: 1em;
+}
+.new, .new form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.section-e h1{
+    background: black;
+    color: thistle;
+    display: block;
+    width: 100vw;
+    padding: 0.5em 2em;
+    text-align: justify;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.new form input, .new form select{
+    padding: 0.5em;
+    width: 200px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    border: none;
+    background: rgb(196, 184, 184);
+    outline: none;
+}
+.new button{
+    width: 100px;
+    height: 30px;
+    background: rgb(53, 53, 155);
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+}
+.new button:hover{
+    background: rgb(104, 104, 179);
+}
+.book-shelf{
+    display: flex;
+}
+.book-shelf table{
+    width: 90vw;
+    padding: 1em 0.5em;
+    margin: 1em 0.3em;
+    border-collapse: collapse;
+    margin-bottom: 2em;
+    font-size: 0.8em;
+}
+tr:nth-child(even) {
+    background-color: #312f2f;
+}
+tr:hover {
+    background-color: #4d4242;
+}
+th {
+    background-color: rgb(33, 48, 116);
+    color: white;
+  }
+table, th, td{
+    padding: 0.5em;
+    border-bottom: 1px solid white;
+}
+table tr{
+    border-bottom: 0.5px solid white;
+}
+table button{
+    background: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
 .section-b{
     flex-direction: column;
@@ -168,6 +254,7 @@ main section{
 .search a{
     color: black;
 }
+
 .search input{
     border-radius: 25px;
     border: none;
@@ -207,6 +294,22 @@ main section{
     width: 60%;
     padding-left: 0.5em;
 }
+.details button{
+    width: 80px;
+    height: 20px;
+    border: none;
+    border-radius: 2px;
+    background: rgb(53, 53, 155);
+    cursor: pointer;
+    color: white;
+    margin-top:
+    font-size: 11px;
+}
+.details select{
+    width: 100px;
+    background: #1c1f24;
+    color: bisque;
+}
 .book a{
     font-size: 13px;
 }
@@ -224,31 +327,18 @@ main section{
 .attribution{
     font-size: 14px;
 }
-/* .bookdetail{
-    background: rgba(0,0,0,0.4);
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-    z-index: 29;
-    top: -56px;
-    left: 0;
-}
-.bookdetail div{
-    background: #000;
-    width: 80%;
-    border-radius: 10px;
-    height: 80%;
-    margin: 65px auto;
-    color: white;
-    padding: 1em;
-    display: flex;
-} */
 
-/* floating menu*/
 
 @media screen and (min-width:800px){
     main section{
         font-size: 1.4em;
+        min-height: calc(100vh-112px);
+    }
+    main{
+        top: 56px;
+    }
+    header,footer{
+        height: 56px;
     }
     .section-b button{
         font-size: 1.2em;
@@ -262,6 +352,7 @@ main section{
     .explore-button{
         height: 60px;
         margin-bottom: 2em;
+        font-size: 30px;
     }
     .section-b .books, .section-b .books-home{
         grid-template-columns: 50% 50%;
@@ -281,13 +372,22 @@ main section{
     .books .book, .books-home .book{
         width: 450px;
     }
+    .details button{
+        font-size: 12px;
+    }
     footer{
         justify-content: space-around;
+    }
+    footer a{
+        font-size: 1.5em;
     }
 }
 @media screen and (max-width:400px){
     .section-b .books .book,.section-b .books-home .book{
         width: 250px;
+    }
+    .new{
+        width: 270px;
     }
     main{
         font-size: 14px;

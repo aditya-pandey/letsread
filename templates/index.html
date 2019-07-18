@@ -1,10 +1,31 @@
 {% extends "layout.html" %}
 
 {% block title %}
-
 {% endblock %}
+
+<style>
+    footer a{
+        color: aliceblue;
+    }
+</style>
+
+{% block user %}
+    {% if not session.get("user_id") %}
+        <div class="user">
+            <a href="/signup">Sign Up</a>
+            <a href="/login">Login</a>
+        </div>
+    {% else %}
+    <div class="user">
+        <a href="/signup">Hi, {{ name }}</a>
+        <a href="/logout">Log Out</a>
+    </div>
+    {% endif %}
+{% endblock %}
+
 {% block main %}
 
+{% if not session.get("user_id") %}
 <section class="section-a active">
     <div class="headline">
         <h1>Let's Start & Don't Stop.<br>Reading.</h1>
@@ -14,13 +35,38 @@
         <a href="/signup">Sign Up</a>
     </div>
 </section>
-
-{% endblock %}
-
-<!-- 
-<div class="headline">
+{% else %}
+<section class="section-a active">
+    <div class="headline">
         <h1>Welcome to let's read</h1>
         <p>Explore your own e-library, manage your books on go.</p>
     </div>
     <div class="explore-button">
-        <a href="/signup">Begin</a> -->
+        <a href="/shelf">My Books</a>
+    </div>
+</section>
+{% endif %}
+{% endblock %}
+
+{% block footer %}
+<div class="home active-button">
+        <a href="/"><i class="fas fa-home"></i></a>
+        <p>Home</p>
+    </div>
+    <div class="explore">
+        <a href="/explore"><i class="fas fa-search"></i></a>
+        <p>Search</p>
+    </div>
+    <div class="shelf">
+        <a href="/shelf"><i class="fas fa-book-open"></i></a>
+        <p>Books</p>
+    </div>
+    <div class="best-seller">
+        <a href="/bestseller"><i class="fas fa-poll"></i></a>
+        <p>Bestseller</p>
+    </div>
+    <div class="quotes">
+        <a href="/quote"><i class="fas fa-quote-left"></i></a>
+        <p>Quotes</p>
+    </div>
+{% endblock  %}

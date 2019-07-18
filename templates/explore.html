@@ -3,13 +3,26 @@
 {% block title %}
 : Explore
 {% endblock %}
+{% block user %}
+{% if not session.get("user_id") %}
+<div class="user">
+    <a href="/signup">Sign Up</a>
+    <a href="/login">Login</a>
+</div>
+{% else %}
+<div class="user">
+    <a href="/signup">Hi, {{ name }}</a>
+    <a href="/logout">Log Out</a>
+</div>
+{% endif %}
+{% endblock %}
 {% block main %}
 <section class="section-b">
     <!-- <div class="search"> -->
-        <form action="/explore" class="search" method="POST">
-            <input type="text" name="booksearch"  placeholder="Search Books, Authors ..."  />
-           <button type="submit"><a href="#"><i class="fas fa-search"></i></a></button>
-        </form>
+    <form action="/explore" class="search" method="POST">
+        <input type="text" name="booksearch" placeholder="Search Books, Authors ..." />
+        <button type="submit"><a href="#"><i class="fas fa-search"></i></a></button>
+    </form>
     <!-- </div> -->
     <div class="books">
         {% for book in  books %}
@@ -21,8 +34,22 @@
                 <div class="details">
                     <a href="#" class="title">{{ book['title'] }}</a>
                     <p class="author">By {{ book['authors'][0] }}</p>
-                    <p class="rating">Rating : {{ book['averageRating'] }} out of ({{ book['ratingsCount'] }}) ratings</p>
+                    <p class="rating">Rating : {{ book['averageRating'] }} out of ({{ book['ratingsCount'] }}) ratings
+                    </p>
                     <p class="pages">{{ book['pageCount'] }} Pages</p>
+                    <form action="/add" method="POST">
+                        <select name="shelf">
+                            <option value="chose" selected disabled>Choose Shelf</option>
+                            <option value="Read">Read</option>
+                            <option value="Currently reading">Currently Reading</option>
+                            <option value="Want To Read">Want to Read</option>
+                        </select><br>
+                        <input type="hidden" value="{{ book["title"] }}" name="title">
+                        <input type="hidden" value="{{ book["authors"][0] }}" name="author">
+                        <input type="hidden" value="{{ book["pageCount"] }}" name="pages">
+                        <input type="hidden" value="{{ book["averageRating"] }}" name="rating">
+                        <button type="submit">Add to Shelf</button>
+                    </form>
                 </div>
             </div>
             <div class="description">
@@ -36,28 +63,51 @@
         {% endfor %}
     </div>
     <div class="attribution">
-        Data Powered By  &nbsp<a href="https://developers.google.com/books/" target="blank"><i class="fab fa-google"></i>oogle Books</a>
+        Data Powered By &nbsp<a href="https://developers.google.com/books/" target="blank"><i
+                class="fab fa-google"></i>oogle Books</a>
     </div>
 </section>
 {% endblock %}
 
+{% block footer %}
+<div class="home">
+    <a href="/"><i class="fas fa-home"></i></a>
+    <p>Home</p>
+</div>
+<div class="explore active-button">
+    <a href="/explore"><i class="fas fa-search"></i></a>
+    <p>Search</p>
+</div>
+<div class="shelf">
+    <a href="/shelf"><i class="fas fa-book-open"></i></a>
+    <p>Books</p>
+</div>
+<div class="best-seller">
+    <a href="/bestseller"><i class="fas fa-poll"></i></a>
+    <p>Bestseller</p>
+</div>
+<div class="quotes">
+    <a href="/quote"><i class="fas fa-quote-left"></i></a>
+    <p>Quotes</p>
+</div>
+{% endblock  %}
+
 {% block script %}
 <script>
-const book = document.querySelectorAll('.book');
-const more = document.querySelectorAll('.more-button');
-const desci = document.querySelectorAll('.desci');
-for(let i=0;i<more.length;i++){
-    more[i].addEventListener('click',()=>{
-        if(desci[i].style.display == "none"){
-            desci[i].style.display = "block";
-            more[i].innerHTML = "Less:"
-        }
-        else{
-            desci[i].style.display = "none"
-            more[i].innerHTML = "More:"
-        }
-    })
-}
-console.log(book)
+    const book = document.querySelectorAll('.book');
+    const more = document.querySelectorAll('.more-button');
+    const desci = document.querySelectorAll('.desci');
+    for (let i = 0; i < more.length; i++) {
+        more[i].addEventListener('click', () => {
+            if (desci[i].style.display == "none") {
+                desci[i].style.display = "block";
+                more[i].innerHTML = "Less:"
+            }
+            else {
+                desci[i].style.display = "none"
+                more[i].innerHTML = "More:"
+            }
+        })
+    }
 </script>
 {% endblock %}

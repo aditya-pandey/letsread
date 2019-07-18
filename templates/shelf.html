@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+
+{% block title %}
+: My Books
+{% endblock %}
+{% block user %}
+{% if not session.get("user_id") %}
+<div class="user">
+    <a href="/signup">Sign Up</a>
+    <a href="/login">Login</a>
+</div>
+{% else %}
+<div class="user">
+    <a href="/signup">Hi, {{ name }}</a>
+    <a href="/logout">Log Out</a>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block main %}
+
+{% if not session.get("user_id") %}
+<section class="section-e">
+    <h1>Sorry, But you need to be logged in to access this Section.</h1>
+    <div class="explore-button">
+        <a href="/login">Login</a>
+    </div>
+</section>
+{% else %}
+<section class="section-e">
+    <div class="new">
+        <h3>Add Books Not Available on search:</h3><br>
+        <form action="/add" method="POST">
+            <div class="t">
+                <input type="text" name="title" placeholder="Title" required />
+            </div>
+            <div class="a">
+                <input type="text" name="author" placeholder="Author" required />
+            </div>
+            <div class="p">
+                <input type="number" name="pages" placeholder="Pages" required />
+            </div>
+            <div class="w">
+                <select name="shelf">
+                    <option value="chose" selected disabled>Choose Shelf</option>
+                    <option value="Read">Read</option>
+                    <option value="Currently reading">Currently Reading</option>
+                    <option value="Want To Read">Want to Read</option>
+                </select>
+            </div>
+            <div class="r">
+                <input type="number" name="rating" placeholder="Rating Out of 5" required>
+            </div>
+            <div class="s">
+                <button type="submit">Add to Shelf</button>
+            </div>
+        </form>
+    </div>
+    <h1>My Books : </h1>
+    <div class="book-shelf">
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Pages</th>
+                    <th>Shelf</th>
+                    <th>Ratings</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in shelf %}
+                <tr>
+                    <td>{{ book["title"] }}</td>
+                    <td>{{ book["author"] }}</td>
+                    <td>{{ book["pages"] }}</td>
+                    <td>{{ book["shelf"] }}</td>
+                    <td>{{ book["rating"] }}</td>
+                    <td>
+                        <form action="/delete" method="POST">
+                            <input type="hidden" value="{{ book["title"] }}" name="book-to-remove">
+                            <button><i class="fas fa-trash"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endif %}
+{% endblock %}
+{% block footer %}
+<div class="home">
+    <a href="/"><i class="fas fa-home"></i></a>
+    <p>Home</p>
+</div>
+<div class="explore">
+    <a href="/explore"><i class="fas fa-search"></i></a>
+    <p>Search</p>
+</div>
+<div class="shelf active-button">
+    <a href="/shelf"><i class="fas fa-book-open"></i></a>
+    <p>Books</p>
+</div>
+<div class="best-seller">
+    <a href="/bestseller"><i class="fas fa-poll"></i></a>
+    <p>Bestseller</p>
+</div>
+<div class="quotes">
+    <a href="/quote"><i class="fas fa-quote-left"></i></a>
+    <p>Quotes</p>
+</div>
+{% endblock  %}
