@@ -4,6 +4,16 @@
     font-family: 'Karla',sans-serif;
     box-sizing: border-box;
 }
+@font-face {
+    font-family: againts;
+    src: url('/static/AGAINTS.OTF');
+}
+.flexy{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .container{
     width: 100%;
 }
@@ -292,7 +302,7 @@ table button{
     background: rgb(53, 53, 155);
     cursor: pointer;
     color: white;
-    margin-top:
+    margin-top: 3px;
     font-size: 11px;
 }
 .details select{
