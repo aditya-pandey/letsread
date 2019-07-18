@@ -4,16 +4,6 @@
     font-family: 'Karla',sans-serif;
     box-sizing: border-box;
 }
-@font-face {
-    font-family: againts;
-    src: url('/static/AGAINTS.OTF');
-}
-.flexy{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 .container{
     width: 100%;
 }
@@ -53,7 +43,7 @@ footer div{
     cursor: pointer;
 }
 header .logo{
-    font-family: againts;
+    font-family: 'Montez', cursive;
     font-size: 1.8em;
     cursor: pointer;
 }
