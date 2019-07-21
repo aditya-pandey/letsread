@@ -11,7 +11,7 @@
 </div>
 {% else %}
 <div class="user">
-    <a href="/signup">Hi, {{ name }}</a>
+    <a href="/">Hi, {{ name }}</a>
     <a href="/logout">Log Out</a>
 </div>
 {% endif %}
@@ -30,6 +30,7 @@
             <div class="details-cover">
                 <div class="cover">
                     <img src="{{ book['imageLinks']['smallThumbnail'] }}" alt="Cover" width="80" height="100" />
+                    <button class="more-button">More:</button>
                 </div>
                 <div class="details">
                     <a href="#" class="title">{{ book['title'] }}</a>
@@ -53,7 +54,6 @@
                 </div>
             </div>
             <div class="description">
-                <a class="more-button">More:</a>
                 <p class="desci">
                     {{ book['description'] }}
                 </p>
@@ -97,15 +97,18 @@
     const book = document.querySelectorAll('.book');
     const more = document.querySelectorAll('.more-button');
     const desci = document.querySelectorAll('.desci');
+    const description =document.querySelectorAll(".description");
     for (let i = 0; i < more.length; i++) {
         more[i].addEventListener('click', () => {
             if (desci[i].style.display == "none") {
-                desci[i].style.display = "block";
+                description[i].style.maxHeight = "350px";
                 more[i].innerHTML = "Less:"
+                desci[i].style.display = "block";
             }
             else {
-                desci[i].style.display = "none"
                 more[i].innerHTML = "More:"
+                description[i].style.maxHeight = "0px";
+                desci[i].style.display = "none";
             }
         })
     }

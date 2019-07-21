@@ -11,7 +11,7 @@
 </div>
 {% else %}
 <div class="user">
-    <a href="/signup">Hi, {{ name }}</a>
+    <a href="/">Hi, {{ name }}</a>
     <a href="/logout">Log Out</a>
 </div>
 {% endif %}
@@ -22,9 +22,9 @@
 {% if not session.get("user_id") %}
 <section class="section-e">
     <h1>Sorry, But you need to be logged in to access this Section.</h1>
-    <div class="explore-button">
-        <a href="/login">Login</a>
-    </div>
+        <div class="explore-button">
+            <a href="/login">Login</a>
+        </div>
 </section>
 {% else %}
 <section class="section-e">
