@@ -2,6 +2,7 @@ import os
 
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_session import Session
+from datetime import timedelta
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -17,6 +18,7 @@ if not os.getenv("DATABASE_URL"):
 
 # ensure response aren't cached
 
+
 @app.after_request
 def after_request(response):
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
@@ -25,10 +27,10 @@ def after_request(response):
     return response
 
 # Configure session to use filesystem
-app.config["SESSION_PERMANENT"] = False
-app.config["SESSION_TYPE"] = "filesystem"
-Session(app)
+app.config['SESSION_PERMANENT'] = False
+app.config['SESSION_TYPE'] = 'filesystem'
 
+Session(app)
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
@@ -221,6 +223,7 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
+
 @app.route("/add", methods=["POST"])
 def add():
     if not session.get("user_id") is None:
@@ -237,7 +240,6 @@ def add():
         elif not request.form.get("shelf"):
             return apology("Missing Book Shelf", 400)
 
-
         rating = request.form.get("rating")
         result = db.execute(
             text(
@@ -249,20 +251,23 @@ def add():
                 "author": request.form.get("author"),
                 "pages": request.form.get("pages"),
                 "shelf": request.form.get("shelf"),
-                "rating": rating
+                "rating": rating,
             },
         )
         db.commit()
+        db.close()
 
         return redirect(url_for("shelf"))
     else:
-        return apology("You need to be Logged In to add book",400)
+        return apology("You need to be Logged In to add book", 400)
+
 
 @app.route("/delete", methods=["POST"])
 def delete():
     title = request.form.get("book-to-remove")
     db.execute(text("DELETE FROM shelf where title = :title"), {"title": title})
     db.commit()
+    db.close()
     return redirect(url_for("shelf"))
 
 
