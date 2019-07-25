@@ -100,7 +100,7 @@
     const description =document.querySelectorAll(".description");
     for (let i = 0; i < more.length; i++) {
         more[i].addEventListener('click', () => {
-            if (desci[i].style.display == "none") {
+            if (desci[i].style.display == "none" || desci[i].style.display == "") {
                 description[i].style.maxHeight = "350px";
                 more[i].innerHTML = "Less:"
                 desci[i].style.display = "block";

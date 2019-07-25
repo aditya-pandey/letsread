@@ -11,7 +11,10 @@ a{
     color: white;
     text-decoration: none;
 }
-
+.flexy{
+    display: flex;
+    flex-direction: column;
+}
 header,footer{
     width: 100%;
     display: flex;
@@ -134,7 +137,7 @@ main section{
     padding: 2em;
 }
 .new{
-    width: 400px;
+    width: 270px;
     min-height: 40vh;
     background: rgba(255, 255, 255, 0.904);
     border-radius: 15px;
@@ -346,10 +349,13 @@ table button{
     main{
         top: 56px;
     }
+    .new{
+        width: 400px;
+    }
     header,footer{
         height: 56px;
     }
-    .section-b button{
+    .search button{
         font-size: 1.2em;
     }
     .section-a p{
@@ -380,6 +386,9 @@ table button{
     }
     .books .book, .books-home .book{
         width: 450px;
+    }
+    .details button, .more-button{
+        font-size: 11px;
     }
     .details{
         font-size: 12px;
