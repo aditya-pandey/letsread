@@ -4,17 +4,17 @@
 : Quotes
 {% endblock %}
 {% block user %}
-    {% if not session.get("user_id") %}
-        <div class="user">
-            <a href="/signup">Sign Up</a>
-            <a href="/login">Login</a>
-        </div>
-    {% else %}
-    <div class="user">
-        <a href="/">Hi, {{ name }}</a>
-        <a href="/logout">Log Out</a>
-    </div>
-    {% endif %}
+{% if not session.get("user_id") %}
+<div class="user">
+    <a href="/signup" aria-label="Sign Up">Sign Up</a>
+    <a href="/login" aria-label="Login">Login</a>
+</div>
+{% else %}
+<div class="user">
+    <a href="/" aria-label="Hi User">Hi, {{ name }}</a>
+    <a href="/logout" aria-label="Logout">Log Out</a>
+</div>
+{% endif %}
 {% endblock %}
 {% block main %}
 <section class="section-d">
@@ -28,25 +28,25 @@
 {% endblock %}
 {% block footer %}
 <div class="home">
-        <a href="/"><i class="fas fa-home"></i></a>
-        <p>Home</p>
-    </div>
-    <div class="explore">
-        <a href="/explore"><i class="fas fa-search"></i></a>
-        <p>Search</p>
-    </div>
-    <div class="shelf">
-        <a href="/shelf"><i class="fas fa-book-open"></i></a>
-        <p>Books</p>
-    </div>
-    <div class="best-seller">
-        <a href="/bestseller"><i class="fas fa-poll"></i></a>
-        <p>Bestseller</p>
-    </div>
-    <div class="quotes active-button">
-        <a href="/quote"><i class="fas fa-quote-left"></i></a>
-        <p>Quotes</p>
-    </div>
+    <a href="/" aria-label="Home"><i class="fas fa-home"></i></a>
+    <p>Home</p>
+</div>
+<div class="explore">
+    <a href="/explore" aria-label="Search"><i class="fas fa-search"></i></a>
+    <p>Search</p>
+</div>
+<div class="shelf">
+    <a href="/shelf" aria-label="Bookshelf"><i class="fas fa-book-open"></i></a>
+    <p>Books</p>
+</div>
+<div class="best-seller">
+    <a href="/bestseller" aria-label="Bestsellers"><i class="fas fa-poll"></i></a>
+    <p>Bestseller</p>
+</div>
+<div class="quotes active-button">
+    <a href="/quote" aria-label="Quotes"><i class="fas fa-quote-left"></i></a>
+    <p>Quotes</p>
+</div>
 {% endblock  %}
 {% block script %}
 <script>

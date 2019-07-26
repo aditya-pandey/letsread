@@ -6,13 +6,13 @@
 {% block user %}
     {% if not session.get("user_id") %}
         <div class="user">
-            <a href="/signup">Sign Up</a>
-            <a href="/login">Login</a>
+            <a href="/signup" aria-label="Sign Up">Sign Up</a>
+            <a href="/login" aria-label="Login">Login</a>
         </div>
     {% else %}
     <div class="user">
-        <a href="/">Hi, {{ name }}</a>
-        <a href="/logout">Log Out</a>
+        <a href="/" aria-label="Hi User">Hi, {{ name }}</a>
+        <a href="/logout" aria-label="Log Out">Log Out</a>
     </div>
     {% endif %}
 {% endblock %}
@@ -33,26 +33,26 @@
 {% endblock %}
 {% block footer %}
 <div class="home">
-        <a href="/"><i class="fas fa-home"></i></a>
+        <a href="/" aria-label="Home"><i class="fas fa-home"></i></a>
         <p>Home</p>
     </div>
     <div class="explore">
-        <a href="/explore"><i class="fas fa-search"></i></a>
+        <a href="/explore" aria-label="Search"><i class="fas fa-search"></i></a>
         <p>Search</p>
     </div>
     <div class="shelf">
-        <a href="/shelf"><i class="fas fa-book-open"></i></a>
+        <a href="/shelf" aria-label="BookShelf"><i class="fas fa-book-open"></i></a>
         <p>Books</p>
     </div>
     <div class="best-seller active-button">
-        <a href="/bestseller"><i class="fas fa-poll"></i></a>
+        <a href="/bestseller" aria-label="BestSellers"><i class="fas fa-poll"></i></a>
         <p>Bestseller</p>
     </div>
     <div class="quotes">
-        <a href="/quote"><i class="fas fa-quote-left"></i></a>
+        <a href="/quote" aria-label="Quotes"><i class="fas fa-quote-left"></i></a>
         <p>Quotes</p>
     </div>
 {% endblock  %}
 {% block script %}
-<script src="/static/best.js"></script>
+<script src="/static//js/best.js"></script>
 {% endblock %}

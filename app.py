@@ -19,6 +19,14 @@ if not os.getenv("DATABASE_URL"):
 # ensure response aren't cached
 
 
+# @app.before_request
+# def before_request():
+#     if request.url.startswith("http://"):
+#         url = request.url.replace("http://", "https://", 1)
+#         code = 301
+#         return redirect(url, code=code)
+
+
 @app.after_request
 def after_request(response):
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
@@ -26,9 +34,10 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
+
 # Configure session to use filesystem
-app.config['SESSION_PERMANENT'] = False
-app.config['SESSION_TYPE'] = 'filesystem'
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
 
 Session(app)
 engine = create_engine(os.getenv("DATABASE_URL"))
@@ -277,6 +286,9 @@ def delete():
     db.close()
     return redirect(url_for("shelf"))
 
+@app.route('/sw.js', methods=['GET'])
+def sw():
+    return app.send_static_file('sw.js')
 
 if __name__ == "__main__":
     app.run(debug=True)

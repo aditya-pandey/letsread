@@ -74,7 +74,7 @@ main section{
     margin: 0 0.5em;
 }
 .section-a{
-    background: url("/static/back.jpg") no-repeat center center/cover;
+    background: url("/static/images/back.jpg") no-repeat center center/cover;
     padding: 0 3em;
     display: flex;
     flex-direction: column;

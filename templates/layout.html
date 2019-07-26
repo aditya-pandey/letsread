@@ -5,24 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#111">
     <title>Let's Read {% block title %}{% endblock %}</title>
     <link rel="shortcut icon" type="image/png" href="/static/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Karla&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Proza+Libre&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montez&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/style.css">
-    <link rel="stylesheet" href="/static/c-d.css">
-    <link rel="stylesheet" href="/static/sign-up.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/c-d.css">
+    <link rel="stylesheet" href="/static/css/sign-up.css">
+    <link rel='manifest' href='static/manifest.webmanifest'>
 </head>
 
 <body>
     <div class="container">
         <header>
             <div class="logo">
-                <a href="/">Let's Read</a>
+                <a href="/" aria-label="Home">Let's Read</a>
             </div>
                     {% block user %}
                     {% endblock %}
@@ -36,10 +37,8 @@
             {% endblock %}
         </footer>
     </div>
-    <script src="/static/main.js"></script>
+    <script src="/static/js/main.js"></script>
     {% block script %}
     {% endblock %}
-
-</body>
-
+    </body>
 </html>
