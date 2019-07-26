@@ -13,11 +13,12 @@
     <link href="https://fonts.googleapis.com/css?family=Proza+Libre&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montez&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/c-d.css">
     <link rel="stylesheet" href="/static/css/sign-up.css">
-    <link rel='manifest' href='static/manifest.webmanifest'>
+    <link rel='manifest' href='static/manifest.json'>
 </head>
 
 <body>
@@ -26,8 +27,8 @@
             <div class="logo">
                 <a href="/" aria-label="Home">Let's Read</a>
             </div>
-                    {% block user %}
-                    {% endblock %}
+            {% block user %}
+            {% endblock %}
         </header>
         <main>
             {% block main %}{% endblock %}
@@ -39,7 +40,13 @@
         </footer>
     </div>
     <script src="/static/js/main.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+        }
+    </script>
     {% block script %}
     {% endblock %}
-    </body>
+</body>
+
 </html>
