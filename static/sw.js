@@ -1,26 +1,27 @@
-let CACHE_NAME = 'sw-v1'
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-    .then(cache => cache.addAll('../offline.html'))
-  )
-})
-self.addEventListener('fetch', (event) => {
-  if (event.request.method === 'GET') {
+let CACHE_DYNAMIC_NAME = 'sw-v1'
+
+addEventListener('fetch', function(event) {
     event.respondWith(
       caches.match(event.request)
-      .then((cached) => {
-        var networked = fetch(event.request)
-          .then((response) => {
-            let cacheCopy = response.clone()
-            caches.open(CACHE_NAME)
-              .then(cache => cache.put(event.request, cacheCopy))
-            return response;
-          })
-          .catch(() => caches.match(offlinePage));
-        return cached || networked;
-      })
-    )
-  }
-  return;
-});
+        .then(function(response) {
+          if (response) {
+            return response;     // if valid response is found in cache return it
+          } else {
+            return fetch(event.request)     //fetch from internet
+              .then(function(res) {
+                return caches.open(CACHE_DYNAMIC_NAME)
+                  .then(function(cache) {
+                    cache.put(event.request.url, res.clone());    //save the response for future
+                    return res;   // return the fetched data
+                  })
+              })
+              .catch(function(err) {       // fallback mechanism
+                return caches.open(CACHE_CONTAINING_ERROR_MESSAGES)
+                  .then(function(cache) {
+                    return cache.match('/offline.html');
+                  });
+              });
+          }
+        })
+    );
+  });

@@ -1,9 +1,9 @@
 {
-    "name": "Letsread",
-    "short_name": "letsread",
+    "name": "Let's Read",
+    "short_name": "Let's Read",
     "theme_color": "#111",
     "background_color": "#111",
-    "display": "browser",
+    "display": "standalone",
     "Scope": "/",
     "start_url": "/",
     "icons": [
