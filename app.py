@@ -19,14 +19,6 @@ if not os.getenv("DATABASE_URL"):
 # ensure response aren't cached
 
 
-@app.before_request
-def before_request():
-    if request.url.startswith("http://"):
-        url = request.url.replace("http://", "https://", 1)
-        code = 301
-        return redirect(url, code=code)
-
-
 @app.after_request
 def after_request(response):
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
@@ -286,9 +278,10 @@ def delete():
     db.close()
     return redirect(url_for("shelf"))
 
-@app.route('/sw.js', methods=['GET'])
-def sw():
-    return app.send_static_file('sw.js')
+
+@app.route("/offline")
+def offline():
+    return render_template("offline.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

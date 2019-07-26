@@ -2,7 +2,7 @@
     "name": "Let's Read",
     "short_name": "Let's Read",
     "theme_color": "#111",
-    "background_color": "#111",
+    "background_color": "#eee",
     "display": "standalone",
     "Scope": "/",
     "start_url": "/",
