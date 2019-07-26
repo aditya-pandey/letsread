@@ -1,0 +1,9 @@
+{
+    "name": "Let's Read",
+    "short_name": "letsread",
+    "theme_color": "#101213",
+    "background_color": "#272a2d",
+    "display": "browser",
+    "scope": "/",
+    "start_url": "/"
+  }
