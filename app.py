@@ -69,7 +69,7 @@ def explore():
             rows = db.execute(
                 text("SELECT * FROM readers WHERE id = :id"), {"id": session["user_id"]}
             ).fetchall()
-            db.close()
+
             name = rows[0]["name"]
             return render_template("explore.html", books=books, name=name)
         else:
@@ -79,7 +79,7 @@ def explore():
             rows = db.execute(
                 text("SELECT * FROM readers WHERE id = :id"), {"id": session["user_id"]}
             ).fetchall()
-            db.close()
+
             name = rows[0]["name"]
             return render_template("explore.html", name=name)
         else:
@@ -92,7 +92,7 @@ def bestseller():
         rows = db.execute(
             text("SELECT * FROM readers WHERE id = :id"), {"id": session["user_id"]}
         ).fetchall()
-        db.close()
+
         name = rows[0]["name"]
         return render_template("best.html", name=name)
     else:
@@ -105,12 +105,12 @@ def shelf():
         rows = db.execute(
             text("SELECT * FROM readers WHERE id = :id"), {"id": session["user_id"]}
         ).fetchall()
-        db.close()
+
         name = rows[0]["name"]
         shelf = db.execute(
             text("SELECT * FROM shelf WHERE id = :id"), {"id": session["user_id"]}
         ).fetchall()
-        db.close()
+
         return render_template("shelf.html", name=name, shelf=shelf)
     else:
         return render_template("shelf.html")
@@ -122,7 +122,7 @@ def quote():
         rows = db.execute(
             text("SELECT * FROM readers WHERE id = :id"), {"id": session["user_id"]}
         ).fetchall()
-        db.close()
+
         name = rows[0]["name"]
         return render_template("quotes.html", name=name)
     else:
@@ -167,7 +167,7 @@ def signup():
             },
         )
         db.commit()
-        db.close()
+
         if not result:
             return apology("Username already exists", 400)
 
@@ -175,7 +175,7 @@ def signup():
             text("SELECT * FROM readers WHERE username = :username"),
             {"username": request.form.get("username")},
         ).fetchall()
-        db.close()
+
         session["user_id"] = rows[0]["id"]
         name = rows[0]["name"]
         return redirect(url_for("index", name=name))
@@ -262,8 +262,6 @@ def add():
             },
         )
         db.commit()
-        flash("Book Added")
-        db.close()
 
         return redirect(url_for("shelf"))
     else:
@@ -275,7 +273,6 @@ def delete():
     title = request.form.get("book-to-remove")
     db.execute(text("DELETE FROM shelf where title = :title"), {"title": title})
     db.commit()
-    db.close()
     return redirect(url_for("shelf"))
 
 
