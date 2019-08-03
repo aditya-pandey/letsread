@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask, render_template, request, redirect, url_for, flash, session, current_app
 from flask_session import Session
 from datetime import timedelta
 from flask_sqlalchemy import SQLAlchemy
@@ -8,6 +8,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.orm import scoped_session, sessionmaker
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import lookup, apology, login_required
+
 
 # configure application
 app = Flask(__name__)
@@ -278,10 +279,13 @@ def delete():
     db.close()
     return redirect(url_for("shelf"))
 
-
-@app.route("/offline")
+@app.route("/offline.html")
 def offline():
-    return render_template("offline.html")
+    return app.send_static_file("offline.html")
+
+@app.route('/sw.js', methods=['GET'])
+def sw():
+    return app.send_static_file("sw.js")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,host="0.0.0.0", port=8080)
