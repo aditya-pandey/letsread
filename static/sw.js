@@ -1,9 +1,5 @@
 const cacheName = 'lets-read';
 const filesToCache = [
-    '/',
-    '/static/images/back.jpg',
-    '/static/app.js',
-    '/static/style.css',
     '/offline.html'
 ];
 
