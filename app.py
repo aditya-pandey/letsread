@@ -58,6 +58,7 @@ def explore():
         for j in jsonresult:
             books.append(j["volumeInfo"])
         for book in books:
+            book["imageLinks"]["smallThumbnail"] = book["imageLinks"]["smallThumbnail"].replace("http","https")
             if book.get("imageLinks") == None:
                 book["imageLinks"] = {
                     "smallThumbnail": "https://dhmckee.com/wp-content/uploads/2018/11/defbookcover-min.jpg"
