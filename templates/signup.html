@@ -15,7 +15,7 @@
 <body>
     <div class="cover-s">
         <div class="login-message">
-            <p>Already have an account? <a href="/login" aria-label="Login">Log In</a></p>
+            <p><a href="/" aria-label="Back to home">Back to Home</a></p>
         </div>
         <div class="wrapper">
             <div class="heading">
@@ -25,13 +25,13 @@
 
             <div class="signup-form">
                 <form action="" method="post">
-                    <input type="text" placeholder="Username" name="username" autocomplete="none">
-                    <input type="text" placeholder="Name" name="name" autocomplete="none">
-                    <input type="email" name="email" placeholder="Email Address" autocomplete="none">
-                    <input type="password" name="password" placeholder="Password" autocomplete="none">
-                    <input type="password" name="confirm" placeholder="Confirm Password" autocomplete="none">
+                    <input type="text" placeholder="Username" name="username" minlength="3" required autocomplete="none">
+                    <input type="text" placeholder="Name" name="name" autocomplete="none" minlength="3" required>
+                    <input type="email" name="email" placeholder="Email Address" autocomplete="none" required>
+                    <input type="password" name="password" placeholder="Password (Minimum 6 characters)" minlength="6" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" autocomplete="none" required>
+                    <input type="password" name="confirm" placeholder="Confirm Password" autocomplete="none" required>
                     <button type="submit" value="Create Account">Create Account</button>
-                    <button><a href="/" aria-label="Back to home">Back to Home</a></button>
+                    <button><a href="/login" aria-label="Login">Log In</a></button>
                 </form>
             </div>
         </div>
