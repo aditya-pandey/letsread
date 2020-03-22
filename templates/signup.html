@@ -25,10 +25,12 @@
 
             <div class="signup-form">
                 <form action="" method="post">
+                    <!-- oninvalid="InvalidMsg(this);"
+                   oninput="InvalidMsg(this);" -->
                     <input type="text" placeholder="Username" name="username" minlength="3" required autocomplete="none">
                     <input type="text" placeholder="Name" name="name" autocomplete="none" minlength="3" required>
-                    <input type="email" name="email" placeholder="Email Address" autocomplete="none" required>
-                    <input type="password" name="password" placeholder="Password (Minimum 6 characters)" minlength="6" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" autocomplete="none" required>
+                    <input type="email" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" name="email" placeholder="Email Address" autocomplete="none" required>
+                    <input type="password" name="password" placeholder="Password (Minimum 6 characters)" minlength="6" oninvalid="InvalidPwd(this);" oninput="InvalidPwd(this);" autocomplete="none" required>
                     <input type="password" name="confirm" placeholder="Confirm Password" autocomplete="none" required>
                     <button type="submit" value="Create Account">Create Account</button>
                     <button><a href="/login" aria-label="Login">Log In</a></button>
@@ -37,6 +39,19 @@
         </div>
     </div>
     <script src="/static/app.js"></script>
+    <script>
+        function InvalidMsg(textbox) {
+            return textbox.value === '' ? textbox.setCustomValidity('Email is Required for creating Account')
+            :textbox.validity.typeMismatch ?  textbox.setCustomValidity('Please enter a valid Email Address of format "somthing@someserver.com"')
+            :textbox.setCustomValidity('');
+        }
+        function InvalidPwd(textbox) {
+            return textbox.value === '' ? textbox.setCustomValidity('Please Enter A Password for Your Account')
+            :textbox.validity.typeMismatch ?  textbox.setCustomValidity('Password Must Have Atleast 6 Characters')
+            :textbox.setCustomValidity('');
+        }
+
+    </script>
 </body>
 
 </html>

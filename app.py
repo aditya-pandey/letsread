@@ -156,6 +156,15 @@ def signup():
 
         # hashing the password
         password = generate_password_hash(request.form.get("password"))
+        checkrows = rows = db.execute(
+            text("SELECT username,email FROM readers"),
+        ).fetchall()
+        for k in checkrows:
+            if k[0] == request.form.get("username"):
+                return apology("Username Already Exists", 400)
+        for k in checkrows:
+            if k[1] == request.form.get("email"):
+                return apology("Email already in Use", 400)
 
         result = db.execute(
             text(
@@ -169,7 +178,6 @@ def signup():
             },
         )
         db.commit()
-        db.close()
         if not result:
             return apology("Username already exists", 400)
 
