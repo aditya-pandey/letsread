@@ -1,5 +1,6 @@
 const listF = document.querySelector('.list-b');
 const listN = document.querySelector('.list-c');
+const listM = document.querySelector('.list-d');
 
 function getBestFictionSeller() {
     var best = new XMLHttpRequest();
@@ -43,5 +44,26 @@ function getBestNonFictionSeller() {
     }
     best.send();
 }
+function getManga() {
+    var best = new XMLHttpRequest();
+    best.open('GET', 'https://api.nytimes.com/svc/books/v3/lists/current/Manga.json?api-key=CMnfq4pWCyytTakcsWba95xBGJ2khBdk')
+    best.onload = function () {
+        if (this.status === 200) {
+            const response = JSON.parse(this.response);
+            const bookList = response.results['books'];
+            for (let j = 0; j < bookList.length; j++) {
+                const book = bookList[j];
+                listM.innerHTML +=
+                    `
+                <div class="b-book">
+                    <img src="${book.book_image}" alt="BestSeller" width="100" height="150">
+                </div>
+                `
+            }
+        }
+    }
+    best.send();
+}
 getBestFictionSeller();
 getBestNonFictionSeller();
+getManga();
